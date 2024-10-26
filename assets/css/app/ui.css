@@ -1,0 +1,14 @@
+body > * {
+  max-width:1200px;
+}
+header, main, footer {
+  display:block;
+}
+
+header {
+  margin-bottom:1em;
+}
+footer {
+  margin-top:1em;
+  text-align: center;
+}
