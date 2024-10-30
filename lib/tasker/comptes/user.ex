@@ -2,12 +2,15 @@ defmodule Tasker.Comptes.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, :binary_id, autogenerate: true}
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
+
+    has_one :worker, Tasker.Worker
 
     timestamps(type: :utc_datetime)
   end
