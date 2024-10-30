@@ -4,7 +4,7 @@ defmodule Tasker.Repo.Migrations.CreateWorker do
   def change do
     create table(:workers, primary_key: false) do
       add :id, :binary_id, primary_key: true, autogenerate: true
-      add :nickname, :string
+      add :nickname, :string, null: false
     end
 
     unique_index(:workers, [:nickname])
