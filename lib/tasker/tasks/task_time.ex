@@ -9,7 +9,8 @@ defmodule Tasker.Tasks.TaskTime do
     field :should_end_at, :naive_datetime
     field :recurrence, :string
     field :execution_duration, :integer
-    has_many :exec_spans, Tasker.Tasks.TaskTime.ExecSpan, type: :binary_id
+    belongs_to :task, Tasker.Tasks.Task, type: :binary_id
+    has_many :exec_spans, Tasker.Tasks.TaskTime.ExecSpan
 
     timestamps(type: :utc_datetime)
   end
@@ -17,7 +18,7 @@ defmodule Tasker.Tasks.TaskTime do
   @doc false
   def changeset(task_time, attrs) do
     task_time
-    |> cast(attrs, [:id, :duration, :should_start_at, :should_end_at, :recurrence, :execution_duration])
-    |> validate_required([:id, :duration, :should_start_at, :should_end_at, :recurrence, :execution_duration])
+    |> cast(attrs, [:id, :task_id, :duration, :should_start_at, :should_end_at, :recurrence, :execution_duration])
+    |> validate_required([:id, :task_id, :duration, :should_start_at, :should_end_at, :recurrence, :execution_duration])
   end
 end

@@ -9,7 +9,7 @@ defmodule Tasker.Tasks.TaskTime.ExecSpan do
   schema "exec_spans" do
     field :span_start, :naive_datetime
     field :span_end, :naive_datetime
-    belongs_to :task_time_id, Tasker.Tasks.TaskTime, type: :binary_id
+    belongs_to :task_time, Tasker.Tasks.TaskTime, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
@@ -17,7 +17,7 @@ defmodule Tasker.Tasks.TaskTime.ExecSpan do
   @doc false
   def changeset(exec_span, attrs) do
     exec_span
-    |> cast(attrs, [:id, :span_start, :span_end])
-    |> validate_required([:id, :span_start, :span_end])
+    |> cast(attrs, [:id, :task_time_id, :span_start, :span_end])
+    |> validate_required([:id, :task_time_id, :span_start, :span_end])
   end
 end

@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* This file is for your main application CSS */
 
-@import "app/ui.css";
+@import "app/fonts";
+@import "app/ui";
+
+
+

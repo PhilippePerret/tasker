@@ -15,5 +15,12 @@ defmodule Tasker.Repo.Migrations.CreateTaskSpecs do
     end
 
     create index(:task_specs, [:task_id])
+
+
+    alter table(:tasks) do
+      add :task_spec_id, references(:task_specs, on_delete: :delete_all, type: :binary_id)      
+    end
+    create index(:tasks, [:task_spec_id])
+
   end
 end

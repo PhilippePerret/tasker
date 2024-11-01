@@ -8,7 +8,7 @@ defmodule Tasker.Repo.Migrations.CreateProjects do
       add :started_at, :naive_datetime
       add :expected_at, :naive_datetime
       add :description, :text
-      add :location_id, references(:locations)
+      add :location_id, references(:locations, on_delete: :nothing)
 
       timestamps(type: :utc_datetime)
     end

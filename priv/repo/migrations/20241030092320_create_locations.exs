@@ -9,3 +9,5 @@ defmodule Tasker.Repo.Migrations.CreateLocations do
     end
   end
 end
+
+# 20241030092320_create_locations.exs

@@ -11,48 +11,81 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body class="bg-white">
-    <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
-      <%= if @current_user do %>
-        <li class="text-[0.8125rem] leading-6 text-zinc-900">
-          <%= @current_user.email %>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/settings"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+  <body class="bg-ppColored-light">
+    <header class="relative px-4 pt-1 pb-1 justify-between items-center bg-ppColored-dark text-white">
+      <a href={~p"/"}>
+        <div style="font-family:MaFonte;font-weight:normal;font-style:normal;">TASKER</div>
+      </a>
+      <div style=" font-family:PAvenir;font-weight:100;font-style:normal;">Le gestionnaire de tâche le plus léger du monde.</div>
+       
+      <div 
+        id="header-bloc-user" 
+        class="absolute block right-8 top-2 bg-blue-500 w-100 h-10 rounded-full"
+        phx-click="toggle_menu_avatar"
+        >
+        <button 
+          id="avatar" 
+          class="block w-10 h-10 bg-red-500 rounded-full fleche-droite"
+          phx-click={TaskerWeb.Layouts.App.toggle_menu_avatar}
           >
-            Settings
-          </.link>
-        </li>
-        <li>
-          <.link
+          <% 
+            image_name = if @current_user do
+              "#{@current_user.id}_avatar.jpg"
+            else
+              "default_avatar.png"
+            end
+          %>
+          <img class="rounded-full" src={~p"/images/users/#{image_name}"} />
+        </button>
+        <div 
+          id="main-menu-user"
+          class="absolute"
+          >
+          <%= if @current_user do %>
+            <.link
+              href={~p"/users/settings"}
+              method="get"
+              class=""
+              tabindex="-1"
+            >
+              Réglages
+            </.link>
+
+            <.link
             href={~p"/users/log_out"}
             method="delete"
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+            class=""
+            tabindex="-1"
           >
-            Log out
+            Se déconnecter
           </.link>
-        </li>
-      <% else %>
-        <li>
-          <.link
+
+          <% else %>
+
+            <.link
             href={~p"/users/register"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+            class=""
+            tabindex="-1"
           >
-            Register
+            S'inscrire
           </.link>
-        </li>
-        <li>
           <.link
             href={~p"/users/log_in"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+            class=""
+            tabindex="-1"
           >
-            Log in
+            S'identifier
           </.link>
-        </li>
-      <% end %>
-    </ul>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <.flash_group flash={@flash} />
+
     <%= @inner_content %>
+    <footer>
+      [PIED DE PAGE]
+    </footer>
+
   </body>
 </html>

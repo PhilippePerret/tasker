@@ -6,7 +6,7 @@ defmodule Tasker.Task.TaskTime do
   import Ecto.Query, warn: false
   alias Tasker.Repo
 
-  alias Tasker.Task.TaskTime.ExecSpan
+  alias Tasker.Tasks.TaskTime.ExecSpan
 
   @doc """
   Returns the list of exec_spans.
@@ -49,8 +49,9 @@ defmodule Tasker.Task.TaskTime do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_exec_span(attrs \\ %{}) do
-    %ExecSpan{}
+  def create_exec_span(task_time, attrs \\ %{}) do
+    task_time
+    |> Ecto.build_assoc(:exec_spans)
     |> ExecSpan.changeset(attrs)
     |> Repo.insert()
   end

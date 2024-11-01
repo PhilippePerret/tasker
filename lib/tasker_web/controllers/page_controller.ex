@@ -5,7 +5,7 @@ defmodule TaskerWeb.PageController do
     # The home page is often custom made,
     # so skip the default app layout.
     if conn.assigns[:current_user] do
-      render(conn, :main)
+      render(conn, :main, layout: false)
     else
       render(conn, :home, layout: false)
     end

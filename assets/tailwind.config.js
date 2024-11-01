@@ -14,11 +14,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#FD4F00",
+        ppDark: {
+          dark: "#0505050",
+          DEFAULT: "#AAAAAA",
+          light: "#676767"
+        },
+        ppColored: {
+          dark: "#000055",
+          DEFAULT: "#005555",
+          light: "#AAAAFF"
+        }
+      },
+      fontFamily:{
+        brand: ["MaFonte", "Arial"],
+        avenir: ["PAvenir", "sans-serif"]
       }
     },
   },
   plugins: [
+    plugin(function({ addBase, theme }) {
+      addBase({
+        ':root': {
+          '--maintheme-light': theme('colors.ppColored.light'),
+          '--maintheme-dark': theme('colors.ppColored.dark'),
+        }
+      })
+    }),
     require("@tailwindcss/forms"),
     // Allows prefixing tailwind classes with LiveView classes to add rules
     // only when LiveView classes are applied, for example:

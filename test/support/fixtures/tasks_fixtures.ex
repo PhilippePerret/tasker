@@ -69,4 +69,18 @@ defmodule Tasker.TasksFixtures do
 
     task_spec
   end
+
+  @doc """
+  Generate a worker_task.
+  """
+  def worker_task_fixture(attrs \\ %{}) do
+    {:ok, worker_task} =
+      attrs
+      |> Enum.into(%{
+
+      })
+      |> Tasker.Tasks.create_worker_task()
+
+    worker_task
+  end
 end

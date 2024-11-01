@@ -118,4 +118,58 @@ defmodule Tasker.ProjectsTest do
       assert %Ecto.Changeset{} = Projects.change_location(location)
     end
   end
+
+  describe "workers_projects" do
+    alias Tasker.Projects.WorkerProject
+
+    import Tasker.ProjectsFixtures
+
+    @invalid_attrs %{id: nil}
+
+    test "list_workers_projects/0 returns all workers_projects" do
+      worker_project = worker_project_fixture()
+      assert Projects.list_workers_projects() == [worker_project]
+    end
+
+    test "get_worker_project!/1 returns the worker_project with given id" do
+      worker_project = worker_project_fixture()
+      assert Projects.get_worker_project!(worker_project.id) == worker_project
+    end
+
+    test "create_worker_project/1 with valid data creates a worker_project" do
+      valid_attrs = %{id: "some id"}
+
+      assert {:ok, %WorkerProject{} = worker_project} = Projects.create_worker_project(valid_attrs)
+      assert worker_project.id == "some id"
+    end
+
+    test "create_worker_project/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Projects.create_worker_project(@invalid_attrs)
+    end
+
+    test "update_worker_project/2 with valid data updates the worker_project" do
+      worker_project = worker_project_fixture()
+      update_attrs = %{id: "some updated id"}
+
+      assert {:ok, %WorkerProject{} = worker_project} = Projects.update_worker_project(worker_project, update_attrs)
+      assert worker_project.id == "some updated id"
+    end
+
+    test "update_worker_project/2 with invalid data returns error changeset" do
+      worker_project = worker_project_fixture()
+      assert {:error, %Ecto.Changeset{}} = Projects.update_worker_project(worker_project, @invalid_attrs)
+      assert worker_project == Projects.get_worker_project!(worker_project.id)
+    end
+
+    test "delete_worker_project/1 deletes the worker_project" do
+      worker_project = worker_project_fixture()
+      assert {:ok, %WorkerProject{}} = Projects.delete_worker_project(worker_project)
+      assert_raise Ecto.NoResultsError, fn -> Projects.get_worker_project!(worker_project.id) end
+    end
+
+    test "change_worker_project/1 returns a worker_project changeset" do
+      worker_project = worker_project_fixture()
+      assert %Ecto.Changeset{} = Projects.change_worker_project(worker_project)
+    end
+  end
 end

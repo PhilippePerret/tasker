@@ -49,8 +49,9 @@ defmodule Tasker.Tasks do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_task_time(attrs \\ %{}) do
-    %TaskTime{}
+  def create_task_time(task, attrs \\ %{}) do
+    task
+    |> Ecto.build_assoc(:task_times)
     |> TaskTime.changeset(attrs)
     |> Repo.insert()
   end
@@ -337,8 +338,9 @@ defmodule Tasker.Tasks do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_task_spec(attrs \\ %{}) do
-    %TaskSpec{}
+  def create_task_spec(task, attrs \\ %{}) do
+    task
+    |> Ecto.build_assoc(:task_specs)
     |> TaskSpec.changeset(attrs)
     |> Repo.insert()
   end
@@ -388,5 +390,102 @@ defmodule Tasker.Tasks do
   """
   def change_task_spec(%TaskSpec{} = task_spec, attrs \\ %{}) do
     TaskSpec.changeset(task_spec, attrs)
+  end
+
+  alias Tasker.Tasks.WorkerTask
+
+  @doc """
+  Returns the list of workers_tasks.
+
+  ## Examples
+
+      iex> list_workers_tasks()
+      [%WorkerTask{}, ...]
+
+  """
+  def list_workers_tasks do
+    Repo.all(WorkerTask)
+  end
+
+  @doc """
+  Gets a single worker_task.
+
+  Raises `Ecto.NoResultsError` if the Worker task does not exist.
+
+  ## Examples
+
+      iex> get_worker_task!(123)
+      %WorkerTask{}
+
+      iex> get_worker_task!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_worker_task!(id), do: Repo.get!(WorkerTask, id)
+
+  @doc """
+  Creates a worker_task.
+
+  ## Examples
+
+      iex> create_worker_task(%{field: value})
+      {:ok, %WorkerTask{}}
+
+      iex> create_worker_task(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_worker_task(worker, attrs \\ %{}) do
+    worker
+    |> Ecto.build_assoc(:workers_tasks)
+    |> WorkerTask.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a worker_task.
+
+  ## Examples
+
+      iex> update_worker_task(worker_task, %{field: new_value})
+      {:ok, %WorkerTask{}}
+
+      iex> update_worker_task(worker_task, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_worker_task(%WorkerTask{} = worker_task, attrs) do
+    worker_task
+    |> WorkerTask.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a worker_task.
+
+  ## Examples
+
+      iex> delete_worker_task(worker_task)
+      {:ok, %WorkerTask{}}
+
+      iex> delete_worker_task(worker_task)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_worker_task(%WorkerTask{} = worker_task) do
+    Repo.delete(worker_task)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking worker_task changes.
+
+  ## Examples
+
+      iex> change_worker_task(worker_task)
+      %Ecto.Changeset{data: %WorkerTask{}}
+
+  """
+  def change_worker_task(%WorkerTask{} = worker_task, attrs \\ %{}) do
+    WorkerTask.changeset(worker_task, attrs)
   end
 end

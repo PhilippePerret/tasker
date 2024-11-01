@@ -5,5 +5,6 @@ defmodule Tasker.Worker do
   schema "workers" do
     field :nickname, :string
     belongs_to :user, Tasker.Comptes.User, type: :binary_id
+    has_many :worker_task, Tasker.Tasks.WorkerTask
   end
 end

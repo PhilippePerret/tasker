@@ -8,6 +8,7 @@ defmodule Tasker.Projects.Project do
     field :description, :string
     field :start_at, :naive_datetime
     field :expected_at, :naive_datetime
+    belongs_to :location, Tasker.Projects.Location
 
     timestamps(type: :utc_datetime)
   end

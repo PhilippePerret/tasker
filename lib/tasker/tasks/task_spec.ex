@@ -6,10 +6,10 @@ defmodule Tasker.Tasks.TaskSpec do
   schema "task_specs" do
     field :description, :string
     field :titre, :string
-    field :contenu, :text
+    field :contenu, :string
     field :note, :string
     field :script, :string
-    belongs_to :task_id, Tasker.Tasks.Task, type: :binary_id
+    belongs_to :task, Tasker.Tasks.Task, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
@@ -17,7 +17,7 @@ defmodule Tasker.Tasks.TaskSpec do
   @doc false
   def changeset(task_spec, attrs) do
     task_spec
-    |> cast(attrs, [:id, :titre, :content, :description, :note, :script])
-    |> validate_required([:id, :titre, :content, :description, :note, :script])
+    |> cast(attrs, [:id, :titre, :content, :description, :note, :script, :task_id])
+    |> validate_required([:id, :titre, :content, :description, :note, :script, :task_id])
   end
 end

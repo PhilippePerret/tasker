@@ -35,4 +35,18 @@ defmodule Tasker.ProjectsFixtures do
 
     location
   end
+
+  @doc """
+  Generate a worker_project.
+  """
+  def worker_project_fixture(attrs \\ %{}) do
+    {:ok, worker_project} =
+      attrs
+      |> Enum.into(%{
+        id: "some id"
+      })
+      |> Tasker.Projects.create_worker_project()
+
+    worker_project
+  end
 end
