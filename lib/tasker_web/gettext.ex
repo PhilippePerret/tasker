@@ -20,5 +20,7 @@ defmodule TaskerWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
+
+  # use Gettext.Backend, otp_app: :tasker
   use Gettext, otp_app: :tasker
 end

@@ -4,9 +4,9 @@ defmodule Tasker.Tasks.Task do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "tasks" do
+    field :statut, :integer
     belongs_to :project, Tasker.Projects.Project, type: :binary_id
     has_one :prev_task, Tasker.Tasks.Task
-    has_one :statut, Tasker.Tasks.TaskStatut
     has_one :task_time, Tasker.Tasks.TaskTime
     has_one :task_spec, Tasker.Tasks.TaskSpec
     has_many :worker_task, Tasker.Tasks.WorkerTask

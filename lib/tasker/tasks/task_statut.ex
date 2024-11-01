@@ -2,6 +2,7 @@ defmodule Tasker.Tasks.TaskStatut do
   use Ecto.Schema
   import Ecto.Changeset
 
+
   schema "task_statuts" do
     field :name, :string
 
