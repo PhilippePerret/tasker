@@ -14,7 +14,7 @@
   <body class="bg-ppColored-light">
     <header class="relative px-4 pt-1 pb-1 justify-between items-center bg-ppColored-dark text-white">
       <a href={~p"/"}>
-        <div style="font-family:MaFonte;font-weight:normal;font-style:normal;">TASKER</div>
+        <div class="text-rozy" style="font-family:MaFonte;font-weight:normal;font-style:normal"><span id="app-name">TASKER</span></div>
       </a>
       <div style=" font-family:PAvenir;font-weight:100;font-style:normal;">Le gestionnaire de tâche le plus léger du monde.</div>
        
@@ -40,6 +40,7 @@
         <div 
           id="main-menu-user"
           class="absolute"
+          hidden="true"
           >
           <%= if @current_user do %>
             <.link

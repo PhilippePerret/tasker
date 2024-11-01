@@ -5,6 +5,8 @@ const plugin = require("tailwindcss/plugin")
 const fs = require("fs")
 const path = require("path")
 
+const rozy = "#FFAAFF"
+
 module.exports = {
   content: [
     "./js/**/*.js",
@@ -14,6 +16,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        rozy: rozy,
         ppDark: {
           dark: "#0505050",
           DEFAULT: "#AAAAAA",
@@ -22,7 +25,8 @@ module.exports = {
         ppColored: {
           dark: "#000055",
           DEFAULT: "#005555",
-          light: "#AAAAFF"
+          light: "#AAAAFF",
+          rozy: rozy
         }
       },
       fontFamily:{
@@ -35,8 +39,9 @@ module.exports = {
     plugin(function({ addBase, theme }) {
       addBase({
         ':root': {
-          '--maintheme-light': theme('colors.ppColored.light'),
+          '--maintheme-rozy': theme('colors.ppColored.rozy'),
           '--maintheme-dark': theme('colors.ppColored.dark'),
+          '--rozy': theme('colors.ppColored.rozy'),
         }
       })
     }),
