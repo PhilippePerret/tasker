@@ -1,0 +1,17 @@
+<h1>Créer un nouveau statut de tâche</h1>
+
+<.simple_form 
+  for={@changeset} 
+  phx-submit="save"
+  >
+  <.input field={@changeset[:name]} 
+    label="Nom du statut" 
+    name="name" 
+    value=""
+    type="string" 
+    />
+
+  <:actions>
+    <.button phx-disable-with="Je crée le statut de tâche..." class="w-full">Création du statut de tâche…</.button>
+  </:actions>
+</.simple_form>

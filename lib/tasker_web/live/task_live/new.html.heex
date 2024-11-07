@@ -1,0 +1,16 @@
+<h1>Créer une nouvelle tâche</h1>
+
+<.simple_form 
+  for={@changeset} 
+  phx-submit="save"
+  >
+  <.input field={@changeset[:statut]} label="Statut" type="integer" />
+  <.input field={@changeset[:project_id]} label="Projet" type="select" options={@project_options} />
+  <.error :if={@check_errors}>
+    Oops, quelque chose s’est mal passé, vérifie les erreurs ci-dessous.
+  </.error>
+
+  <:actions>
+    <.button phx-disable-with="Je crée la tâche..." class="w-full">Créer une tâche</.button>
+  </:actions>
+</.simple_form>

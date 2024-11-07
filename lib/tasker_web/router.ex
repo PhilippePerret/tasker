@@ -21,6 +21,18 @@ defmodule TaskerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    # Pour atteindre le formulaire de création d’un statut
+    # (et surtout pour essayer d’y comprendre quelque chose en live)
+    live "/task_statut/new", TaskStatutLive.New, :new
+    # Pour atteindre le formulaire de création d’une nouvelle tâche
+    live "/tasks/new", TaskLive.New, :new
+  end
+
+  scope "/", TaskerWeb do
+    pipe_through :browser
+
+    # resources ":task"
   end
 
   # Other scopes may use custom stacks.

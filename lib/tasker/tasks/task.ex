@@ -4,7 +4,7 @@ defmodule Tasker.Tasks.Task do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "tasks" do
-    field :statut, :integer
+    has_one :statut, Tasker.Tasks.TaskStatut
     belongs_to :project, Tasker.Projects.Project, type: :binary_id
     has_one :prev_task, Tasker.Tasks.Task
     has_one :task_time, Tasker.Tasks.TaskTime
@@ -17,7 +17,7 @@ defmodule Tasker.Tasks.Task do
   @doc false
   def changeset(task, attrs) do
     task
-    |> cast(attrs, [:id])
-    |> validate_required([:id])
+    |> cast(attrs, [:id, :project_id, :statut])
+    |> validate_required([:id, :project_id, :statut])
   end
 end

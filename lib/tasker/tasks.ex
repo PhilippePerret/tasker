@@ -7,6 +7,8 @@ defmodule Tasker.Tasks do
   alias Tasker.Repo
 
   alias Tasker.Tasks.TaskTime
+  alias Tasker.Tasks.Task
+  
 
   @doc """
   Returns the list of task_times.
